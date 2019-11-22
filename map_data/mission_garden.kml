@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+<Document>
+<name>Shapes</name><Style id="thickLine"><LineStyle><width>2.5</width></LineStyle></Style>
+<Style id="transparent50Poly"><PolyStyle><color>7fffffff</color></PolyStyle></Style>
+<Placemark>
+<name>Mission Garden</name>
+<description>Mission Garden</description>
+<Polygon><outerBoundaryIs><LinearRing><coordinates>-110.98760492344837,32.21287211654276,0 -110.98773366948109,32.21397612265514,0 -110.98653203984242,32.214197564127794,0 -110.98640061160069,32.21308714204003,0 -110.98760492344837,32.21287211654276,0 </coordinates></LinearRing></outerBoundaryIs></Polygon><styleUrl>#transparent50Poly</styleUrl></Placemark>
+<Placemark>
+<name>Field</name>
+<description>Field</description>
+<Polygon><outerBoundaryIs><LinearRing><coordinates>-110.98715779956149,32.21339955617697,0 -110.9871786622515,32.21355387066385,0 -110.9866172662293,32.213610603865234,0 -110.98659137711695,32.213445497031174,0 -110.98715779956149,32.21339955617697,0 </coordinates></LinearRing></outerBoundaryIs></Polygon><styleUrl>#transparent50Poly</styleUrl></Placemark>
+<Placemark>
+<name>Medicinal Garden</name>
+<description>Medicinal Garden</description>
+<Polygon><outerBoundaryIs><LinearRing><coordinates>-110.98758140658845,32.21325373831996,0 -110.9875757167639,32.21348067166216,0 -110.98767244378121,32.21349769163998,0 -110.98765916752393,32.21327302767607,0 -110.98758140658845,32.21325373831996,0 </coordinates></LinearRing></outerBoundaryIs></Polygon><styleUrl>#transparent50Poly</styleUrl></Placemark>
+<Placemark>
+<name>Shape</name>
+<description>Shape</description>
+<Polygon><outerBoundaryIs><LinearRing><coordinates></coordinates></LinearRing></outerBoundaryIs></Polygon><styleUrl>#transparent50Poly</styleUrl></Placemark>
+</Document>
+</kml>

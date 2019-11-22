@@ -1,0 +1,19 @@
+Actually draw maps and visualize with .shp files. (BaseMap)
+https://www.datadependence.com/2016/06/creating-map-visualisations-in-python/
+
+KML File generation:
+https://www.doogal.co.uk/polylines.php
+
+Some map generation with python, draws using geometry shapes (.shp) (Geopanda)
+http://darribas.org/gds15/content/labs/lab_03.html
+
+KML files can be converted to shape files:
+https://gis.stackexchange.com/questions/98/converting-between-kml-and-shapefile-shp-format
+
+IPython:
+https://jupyter.readthedocs.io/en/latest/install.html
+
+INFO:
+Lat: 32.21350
+Lon: -110.98716
+Zoom: 19
