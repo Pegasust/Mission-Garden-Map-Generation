@@ -1,0 +1,8 @@
+# Some test files that does not need to be published on Github.
+UK-postcode-boundaries-Jan-2015
+UK-postcode-boundaries-Jan-2015.zip
+london-borough-profiles.csv
+london-borough-profiles.xlsx
+
+# Visual studio actually cache a ton of space.
+.vs

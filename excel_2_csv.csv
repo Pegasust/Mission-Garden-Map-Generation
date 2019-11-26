@@ -1,0 +1,15 @@
+Place,"Frequency 
+(meals per day)",Average score,Affordability,Desirability,Accessibility,Healthiness,Non-GMOs likeliness,,Vector Length,Affordability,Desirability,Accessibility,Healthiness,Non-GMOs likeliness
+Home-cook,2.142857143,8.5,10,6,10,9.5,7,,100,-9.196051363,4.299992663,27.6990501,-60.84309412,73.67376211
+Student Union,0.4285714286,6,8,3,8,7,4,,,,,,,
+Cheesecake Factory,0.05555555556,4.2,5,9,3,3,1,,,,,,,
+Vietnamese Street Food,0.1111111111,7.2,10,10,1,8,7,,,,,,,
+Restaurants in Tucson,0.2857142857,5.8,7,5,6,7,4,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,
+,,,x,y,z,v,w,len,,,,,,
+,,,-7.7881,0.5071,-0.1781,9.193,,,,,,,,
+,,,-0.6634,0.3102,1.9982,-4.3892,5.3148,7.213965797,,,,,,
+,,Normalized,-0.09196051363,0.04299992663,0.276990501,-0.6084309412,0.7367376211,,,,,,,
+,,len 100,-9.196051363,4.299992663,27.6990501,-60.84309412,73.67376211,,,,,,,

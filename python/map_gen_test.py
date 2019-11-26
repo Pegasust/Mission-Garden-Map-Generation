@@ -13,15 +13,15 @@
 INFO:
 Lat: 32.213482
 Lon: -110.986924
-Zoom: 19
+Zoom: 20
 """
 
 # =============================== Constant and helpers ===========================
 OUTPUT_DIR = "D:\\_uofa_classworks\\arec\\map_generator\\maps\\"
 
 LATITUDE = 32.213482
-LONGITUDE = -110.986924
-ZOOM = 19
+LONGITUDE = -110.987034
+ZOOM = 20
 
 def output_file(filename):
     """
@@ -31,15 +31,22 @@ def output_file(filename):
 
 
 import gmplot_wrapper
-
+from map_draw_formatter import *
 
 # =========================== WRAPPERS ===============================
 
 def test():
     gmap = gmplot_wrapper.GoogleMapPlotter(LATITUDE, LONGITUDE, ZOOM)
-    gmap.heatmap([32.213255], [-110.987159])
+    # gmap.heatmap([32.213255], [-110.987159])
+    polygons = parse_polygons("../map_data/Spanish Crops - Sheet1.csv")
+    for poly in polygons.values():
+        print(poly)
+        gmap.polygon(poly[0], poly[1], **poly[2])
     gmap.draw(output_file("mission_garden.html"))
-    gmap.map_type = gmplot_wrapper.map_types.SATELLITE
+    gmap.map_type = gmplot_wrapper.map_types.SATELLITE    
+    for poly in polygons.values():
+        print(poly)
+        gmap.polygon(poly[0], poly[1], **poly[2])
     gmap.draw(output_file("satellite_mg.html"))
 
 test()

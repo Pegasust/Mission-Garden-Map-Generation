@@ -17,3 +17,7 @@ INFO:
 Lat: 32.21350
 Lon: -110.98716
 Zoom: 19
+
+
+google sheets:
+https://docs.google.com/spreadsheets/d/1rkZczTLAVWdjZipQ5wA_bz1q-3qhWhe9nxrjz_TmAKE/edit#gid=0

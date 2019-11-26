@@ -108,25 +108,25 @@ class GoogleMapPlotter(object):
 
     def _process_kwargs(self, kwargs):
         settings = dict()
-        settings["edge_color"] = kwargs.get("color", None) or \
+        settings["edge_color"] = kwargs.get("ec", None) or \
                                  kwargs.get("edge_color", None) or \
-                                 kwargs.get("ec", None) or \
+                                 kwargs.get("color", None) or \
                                  "#000000"
 
-        settings["edge_alpha"] = kwargs.get("alpha", None) or \
+        settings["edge_alpha"] = kwargs.get("ea", None) or \
                                  kwargs.get("edge_alpha", None) or \
-                                 kwargs.get("ea", None) or \
+                                 kwargs.get("alpha", None) or \
                                  1.0
         settings["edge_width"] = kwargs.get("edge_width", None) or \
                                  kwargs.get("ew", None) or \
                                  1.0
-        settings["face_alpha"] = kwargs.get("alpha", None) or \
+        settings["face_alpha"] = kwargs.get("fa", None) or \
                                  kwargs.get("face_alpha", None) or \
-                                 kwargs.get("fa", None) or \
+                                 kwargs.get("alpha", None) or \
                                  0.3
-        settings["face_color"] = kwargs.get("color", None) or \
+        settings["face_color"] = kwargs.get("fc", None) or \
                                  kwargs.get("face_color", None) or \
-                                 kwargs.get("fc", None) or \
+                                 kwargs.get("color", None) or \
                                  "#000000"
 
         settings["color"] = kwargs.get("color", None) or \
@@ -230,8 +230,10 @@ class GoogleMapPlotter(object):
     def polygon(self, lats, lngs, color=None, c=None, **kwargs):
         color = color or c
         kwargs.setdefault("color", color)
+        print("kwargs: {}".format(kwargs))
         settings = self._process_kwargs(kwargs)
-        shape = zip(lats, lngs)
+        print("settings: {}".format(settings))
+        shape = zip(tuple(lats), tuple(lngs))
         self.shapes.append((shape, settings))
 
     def draw(self, htmlfile):
@@ -412,6 +414,8 @@ class GoogleMapPlotter(object):
         fillOpacity= settings.get('face_alpha')
         f.write('var coords = [\n')
         for coordinate in path:
+            print("coord: [0]: {}, [1]: {}".format(\
+                coordinate[0], coordinate[1]))
             f.write('new google.maps.LatLng(%f, %f),\n' %
                     (coordinate[0], coordinate[1]))
         f.write('];\n')
