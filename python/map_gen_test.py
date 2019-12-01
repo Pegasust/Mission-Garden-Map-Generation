@@ -38,7 +38,7 @@ from map_draw_formatter import *
 def test():
     gmap = gmplot_wrapper.GoogleMapPlotter(LATITUDE, LONGITUDE, ZOOM)
     # gmap.heatmap([32.213255], [-110.987159])
-    polygons = parse_polygons("../map_data/Spanish Crops - Sheet1.csv")
+    polygons = parse_polygons("../map_data/Spanish Crops - Drawing Data.csv")
     for poly in polygons.values():
         print(poly)
         gmap.polygon(poly[0], poly[1], **poly[2])

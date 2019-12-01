@@ -51,7 +51,7 @@ class GoogleMapPlotter(object):
         self.ground_overlays = []
         self.radpoints = []
         self.gridsetting = None
-        self.coloricon = os.path.join(os.path.dirname(__file__), 'markers/%s.png')
+        self.coloricon = "https://raw.githubusercontent.com/vgm64/gmplot/master/gmplot/markers/%s.png"
         self.color_dict = mpl_color_map
         self.html_color_codes = html_color_codes
 
@@ -230,9 +230,9 @@ class GoogleMapPlotter(object):
     def polygon(self, lats, lngs, color=None, c=None, **kwargs):
         color = color or c
         kwargs.setdefault("color", color)
-        print("kwargs: {}".format(kwargs))
+        # print("kwargs: {}".format(kwargs))
         settings = self._process_kwargs(kwargs)
-        print("settings: {}".format(settings))
+        # print("settings: {}".format(settings))
         shape = zip(tuple(lats), tuple(lngs))
         self.shapes.append((shape, settings))
 
@@ -250,9 +250,9 @@ class GoogleMapPlotter(object):
             '<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>\n')
         f.write('<title>Google Maps - gmplot </title>\n')
         if self.apikey:
-            f.write('<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true_or_false&key=%s"></script>\n' % self.apikey )
+            f.write('<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=weekly&libraries=visualization&sensor=true_or_false&key=%s"></script>\n' % self.apikey )
         else:
-            f.write('<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=visualization&sensor=true_or_false"></script>\n' )
+            f.write('<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=weekly&libraries=visualization&sensor=true_or_false"></script>\n' )
         f.write('<script type="text/javascript">\n')
         f.write('\tfunction initialize() {\n')
         self.write_map(f)
@@ -343,11 +343,14 @@ class GoogleMapPlotter(object):
     def write_point(self, f, lat, lon, color, title):
         f.write('\t\tvar latlng = new google.maps.LatLng(%f, %f);\n' %
                 (lat, lon))
-        f.write('\t\tvar img = new google.maps.MarkerImage(\'%s\');\n' %
-                (self.coloricon % color))
+        # No need for custom marker image.
+##        f.write('\t\tvar img = new google.maps.MarkerImage(\'%s\');\n' %
+##                (self.coloricon % color))
         f.write('\t\tvar marker = new google.maps.Marker({\n')
         f.write('\t\ttitle: "%s",\n' % title)
-        f.write('\t\ticon: img,\n')
+        # Use label instead of custom marker image.
+        f.write(f'\t\tlabel:\"{title}\",\n')
+##        f.write('\t\ticon: img,\n')
         f.write('\t\tposition: latlng\n')
         f.write('\t\t});\n')
         f.write('\t\tmarker.setMap(map);\n')
@@ -414,8 +417,8 @@ class GoogleMapPlotter(object):
         fillOpacity= settings.get('face_alpha')
         f.write('var coords = [\n')
         for coordinate in path:
-            print("coord: [0]: {}, [1]: {}".format(\
-                coordinate[0], coordinate[1]))
+##            print("coord: [0]: {}, [1]: {}".format(\
+##                coordinate[0], coordinate[1]))
             f.write('new google.maps.LatLng(%f, %f),\n' %
                     (coordinate[0], coordinate[1]))
         f.write('];\n')
