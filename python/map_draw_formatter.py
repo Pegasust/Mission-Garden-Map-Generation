@@ -237,7 +237,7 @@ def assign_gmap(gmap, circles, polygons, make_id_points = True):
                                                                         circs[D_LNG],\
                                                                         circ_name))                
 
-def parse(directory = "../map_data/", out_dir = "../maps/"):
+def parse(directory = "../map_data/", out_dir = "../maps/", api = ''):
     if directory == "":
         directory = "./"
     map_data = dict()
@@ -274,7 +274,7 @@ def parse(directory = "../map_data/", out_dir = "../maps/"):
     # map_data, circles_set, polygons_set are assigned
     for map_name, map_paths in map_data.items():
         log_debug("map_name = {}".format(map_name))
-        gmap = gmplot_wrapper.GoogleMapPlotter(LATITUDE, LONGITUDE, ZOOM)
+        gmap = gmplot_wrapper.GoogleMapPlotter(LATITUDE, LONGITUDE, ZOOM, api)
         polygons = []
         circles = []
         for path in map_paths:

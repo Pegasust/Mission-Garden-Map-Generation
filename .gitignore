@@ -6,3 +6,5 @@ london-borough-profiles.xlsx
 
 # Visual studio actually cache a ton of space.
 .vs
+# Python cache files
+.pyc

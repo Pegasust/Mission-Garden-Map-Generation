@@ -1,6 +1,7 @@
 """
     Taken from https://github.com/vgm64/gmplot/blob/master/gmplot/gmplot.py
-    Modified by Hung Tran in attempt to add satellite support.
+    Modified by Hung Tran in attempt to add satellite support and many
+    other features of Google Map JavaScript API
 """
 from __future__ import absolute_import
 
@@ -51,6 +52,8 @@ class GoogleMapPlotter(object):
         self.ground_overlays = []
         self.radpoints = []
         self.gridsetting = None
+        # Hung Tran: Since the original images are available on github,
+        # use those.
         self.coloricon = "https://raw.githubusercontent.com/vgm64/gmplot/master/gmplot/markers/%s.png"
         self.color_dict = mpl_color_map
         self.html_color_codes = html_color_codes
@@ -108,6 +111,9 @@ class GoogleMapPlotter(object):
 
     def _process_kwargs(self, kwargs):
         settings = dict()
+        ## Modified by Hung Tran:
+        # explicit declarations like edge_color and face_color
+        # should be preferred over implicit declarations like color        
         settings["edge_color"] = kwargs.get("ec", None) or \
                                  kwargs.get("edge_color", None) or \
                                  kwargs.get("color", None) or \
@@ -334,6 +340,8 @@ class GoogleMapPlotter(object):
         f.write('\t\tvar myOptions = {\n')
         f.write('\t\t\tzoom: %d,\n' % (self.zoom))
         f.write('\t\t\tcenter: centerlatlng,\n')
+        # Hung Tran: Added support for more mapTypeIDs as long as
+        # user modifies self.map_type.
         f.write(f'\t\t\t{map_types.option_entry(self.map_type)}\n')
         f.write('\t\t};\n')
         f.write(
@@ -341,14 +349,15 @@ class GoogleMapPlotter(object):
         f.write('\n')
 
     def write_point(self, f, lat, lon, color, title):
+        ## Modified by Hung Tran to use labels instead of custom marker colors.
         f.write('\t\tvar latlng = new google.maps.LatLng(%f, %f);\n' %
                 (lat, lon))
-        # No need for custom marker image.
+        # Hung Tran: No need for custom marker image.
 ##        f.write('\t\tvar img = new google.maps.MarkerImage(\'%s\');\n' %
 ##                (self.coloricon % color))
         f.write('\t\tvar marker = new google.maps.Marker({\n')
         f.write('\t\ttitle: "%s",\n' % title)
-        # Use label instead of custom marker image.
+        # Hung Tran: Use label instead of custom marker image.
         f.write(f'\t\tlabel:\"{title}\",\n')
 ##        f.write('\t\ticon: img,\n')
         f.write('\t\tposition: latlng\n')
