@@ -338,6 +338,7 @@ class GoogleMapPlotter(object):
         f.write('\t\tvar centerlatlng = new google.maps.LatLng(%f, %f);\n' %
                 (self.center[0], self.center[1]))
         f.write('\t\tvar myOptions = {\n')
+        f.write("\t\ttilt:0,\n")
         f.write('\t\t\tzoom: %d,\n' % (self.zoom))
         f.write('\t\t\tcenter: centerlatlng,\n')
         # Hung Tran: Added support for more mapTypeIDs as long as

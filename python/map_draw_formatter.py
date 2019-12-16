@@ -42,7 +42,8 @@ DEFAULT_ENTRY = {ID:"id", LAT:0.00, LNG:0.00, FACE_COLOR: DEFAULT_FACE_COLOR,
                  FACE_ALPHA: DEFAULT_FACE_ALPHA, EDGE_COLOR: DEFAULT_EDGE_COLOR,
                  EDGE_ALPHA: DEFAULT_EDGE_ALPHA, EDGE_WIDTH: DEFAULT_EDGE_WIDTH
                  }
-ENTRY_AT = (ID, LAT, LNG, FACE_COLOR, FACE_ALPHA, EDGE_COLOR, EDGE_ALPHA, EDGE_WIDTH)
+ENTRY_AT = (ID, LAT, LNG, FACE_COLOR, FACE_ALPHA,\
+            EDGE_COLOR, EDGE_ALPHA, EDGE_WIDTH)
 
 D_LAT = 0
 D_LNG = 1
@@ -100,6 +101,7 @@ def parse_polygons(filename):
                     entry[ENTRY_AT[i]] = float(splited_words[i]) if i != 0\
                         else (splited_words[i])  # ID is string
                 except ValueError:
+                    # Can't be expressed in floating point value
                     entry[ENTRY_AT[i]] = splited_words[i]
                 log_trace("splited_word: {}, entry: {}".format(\
                     str(splited_words[i]), entry[ENTRY_AT[i]]))
@@ -115,7 +117,9 @@ def parse_polygons(filename):
                 # Make it so that the entry[ID] points towards poly_info
                 polygons[entry[ID]] = poly_info
             # Parse values by the most recent entry
-            poly_info[D_KW_ARGS] = assign_kw_args(poly_info[D_KW_ARGS], entry, ENTRY_KW_START_POLYGONS,ENTRY_AT)
+            poly_info[D_KW_ARGS] = assign_kw_args(poly_info[D_KW_ARGS], entry,\
+                                                  ENTRY_KW_START_POLYGONS,\
+                                                  ENTRY_AT)
             last_entry = entry
     fobj.close()
     return polygons
@@ -147,7 +151,8 @@ DEFAULT_ENTRY_CIRCLES = {ID:"id", LAT:0.00, LNG:0.00, RADIUS: DEFAULT_RADIUS,
                          EDGE_ALPHA: DEFAULT_EDGE_ALPHA,
                          EDGE_WIDTH: DEFAULT_EDGE_WIDTH
                          }
-ENTRY_AT_CIRCLES = (ID, LAT, LNG, RADIUS, FACE_COLOR, FACE_ALPHA, EDGE_COLOR, EDGE_ALPHA, EDGE_WIDTH)
+ENTRY_AT_CIRCLES = (ID, LAT, LNG, RADIUS, FACE_COLOR,\
+                    FACE_ALPHA, EDGE_COLOR, EDGE_ALPHA, EDGE_WIDTH)
 D_RADIUS = 2
 ENTRY_KW_START_CIRCLES = 4
 D_KW_ARGS_CIRC = 3
@@ -170,7 +175,7 @@ def parse_circles(filename):
             cmt_index = line.find(COMMENT_CHAR)
             if cmt_index != -1:
                 line = line[0:cmt_index]
-            # Strip out white lines and ""
+            # Strip out white lines, '"' and ""
             log_trace("Before strip: {}".format((line)))
             line = line.strip()
             line = line.strip("\"")
@@ -185,21 +190,25 @@ def parse_circles(filename):
             for i in range(len(splited_words)):
                 # Parse those values sequentially
                 if splited_words[i] == "":
-                    # Get the info from the last entry.
+                    # Info remains as the last entry
                     continue
                 try:
                     entry[ENTRY_AT_CIRCLES[i]] = float(splited_words[i]) if i != 0\
-                        else (splited_words[i])  # ID is string
+                        else (splited_words[i])  # Parse ID as string
                 except ValueError:
+                    # Parse info as string if it can't be expressed as float
                     entry[ENTRY_AT_CIRCLES[i]] = splited_words[i]
                 log_trace("splited_word: {}, entry: {}".format(\
                     str(splited_words[i]), entry[ENTRY_AT_CIRCLES[i]]))
             # entry is assigned
             circ_info = [entry[LAT], entry[LNG], entry[RADIUS], dict()]
-            # Make it so that the entry[ID] points towards poly_info
+            # Make it so that the entry[ID] points towards circ_info
             circs[entry[ID]] = circ_info
             # Parse values by the most recent entry
-            circ_info[D_KW_ARGS_CIRC] = assign_kw_args(circ_info[D_KW_ARGS_CIRC], entry, ENTRY_KW_START_CIRCLES, ENTRY_AT_CIRCLES)
+            circ_info[D_KW_ARGS_CIRC] = assign_kw_args(circ_info[D_KW_ARGS_CIRC],\
+                                                       entry,\
+                                                       ENTRY_KW_START_CIRCLES,\
+                                                       ENTRY_AT_CIRCLES)
             last_entry = entry
     fobj.close()
     return circs
@@ -295,6 +304,7 @@ def parse(directory = "../map_data/", out_dir = "../maps/", api = ''):
         
         # Do satellite type map
         output_filename = "satellite_"+map_name + ".html"
+        gmap = gmplot_wrapper.GoogleMapPlotter(LATITUDE, LONGITUDE, ZOOM, api)
         gmap.map_type = gmplot_wrapper.map_types.SATELLITE
         assign_gmap(gmap, circles, polygons)
         gmap.draw(out_dir+output_filename)
