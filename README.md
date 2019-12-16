@@ -1,6 +1,16 @@
 # Mission-Garden-Map-Generation
 https://pegasust.github.io/Mission-Garden-Map-Generation/
 
+## How to obtain a map without watermark:
+  ### 1. Install the dependencies (Python 3.7 or up)
+  ### 2. Clone this project
+  ### 2b. Extract the cloned zip
+  ### 3. Run the Python script map_gen.py in python folder (within where you located the clone of this project)
+  ### 4. Enter location of input directory (press enter to default to map_data folder.
+  ### 5. Enter location of output directory (press enter to default to maps folder.
+  ### 6. (IMPORTANT) Enter the API key of Google Maps API. This API key is needed to remove the watermark.
+  Info: https://developers.google.com/maps/documentation/javascript/get-api-key
+
 ## Scripts:
   ### color_dicts.py:
   Taken from [gmplot Github](https://github.com/vgm64/gmplot/blob/master/gmplot/color_dicts.py); not my original work.
