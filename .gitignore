@@ -3,8 +3,10 @@ UK-postcode-boundaries-Jan-2015
 UK-postcode-boundaries-Jan-2015.zip
 london-borough-profiles.csv
 london-borough-profiles.xlsx
+mission_garden.kml
 
 # Visual studio actually cache a ton of space.
 .vs
 # Python cache files
 .pyc
+
