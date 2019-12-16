@@ -35,3 +35,8 @@
   ### satellite_Spanish Crops - Drawing Data.html:
   The output of satellite view of Mission Garden. This view can be made 2D by pressing the Tilt button on the bottom right. The 2D map is more recently updated.
   > Other .htmls in ./maps/ are test htmls.
+  
+ ## Postscript:
+  1. The output can be integrated into websites since it is written in HTML as well. Although, some tweaks might be necessary to integrate these html files into the websites.
+  2. Feel free to clone the scripts and my google sheet to modify to add more features and update the data.
+  3. One can add textboxes to markers. See https://developers.google.com/maps/documentation/javascript/infowindows
