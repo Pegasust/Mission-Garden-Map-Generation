@@ -11,9 +11,11 @@
   ### lite_debug_printer.py:
   Part of [another project](https://github.com/Pegasust/Lite_Debugger/blob/master/lite_debug_printer.py); my work
   ### map_draw_formatter.py:
-  Contains parser for circles and polygons and a general parser that detects for .csv in directory and separate circles and polygons declaration based on whether they have .circles (circles) or .polygons (polygons) or not (polygons). If the script is ran on __main__, parses on local csv files on ../map_data/ and output on ../maps/. This is the main script of the project/
+  Contains parser for circles and polygons and a general parser that detects for .csv in directory and separate circles and polygons declaration based on whether they have .circles (circles) or .polygons (polygons) or not (polygons). If the script is ran on __main__, parses on local csv files on ../map_data/ and output on ../maps/. This is the main script of the project.
+  ### map_gen.py:
+  The main entry to this project. Parses data from user-inputted directory and output to user-inputted directory with API key or without. Info on API key is not stored or cached in anywhere __*but the generated .html files*__.
   ### map_gen_test.py:
-  A script that helps testing gmplot_wrapper.py and map_draw_formatter.py. Deprecated now though.
+  A script that helps testing gmplot_wrapper.py and map_draw_formatter.py. Deprecated now, though.
   ### map_types.py:
   A script that provides maptypeIDs supported by google maps api.
 
